@@ -1,3 +1,21 @@
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // TODO: Replace with your actual config from Firebase Console
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,3 +144,40 @@ fetch("https://ipinfo.io/json?token=35c06590e7f3d2")  // Free token at ipinfo.io
   </div>
 </body>
 </html>
+<script>
+fetch("https://ipinfo.io/json?token=35c06590e7f3d2")
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById("visitor-info");
+    const now = new Date();
+
+    const visitData = {
+      timestamp: now.toISOString(),
+      ip: data.ip,
+      location: `${data.city}, ${data.region}, ${data.country}`,
+      org: data.org,
+      userAgent: navigator.userAgent
+    };
+
+    // Display to user
+    const items = [
+      ["📍 Location", visitData.location],
+      ["🌐 IP Address", visitData.ip],
+      ["📱 ISP/Org", visitData.org],
+      ["🕒 Time Accessed", now.toLocaleString()],
+      ["💻 Device Info", visitData.userAgent]
+    ];
+
+    items.forEach(([label, value]) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${label}:</strong> ${value}`;
+      li.style.marginBottom = "0.5em";
+      list.appendChild(li);
+    });
+
+    // Store in Firestore
+    db.collection("visits").add(visitData)
+      .then(() => console.log("Visitor data stored"))
+      .catch(err => console.error("Error storing data:", err));
+  });
+</script>
