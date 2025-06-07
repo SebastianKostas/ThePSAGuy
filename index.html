@@ -184,6 +184,7 @@
       </div>
       <img src="logo.png" alt="Cyber Security Logo">
     </div>
+
     <ul id="visitor-info"></ul>
     <p style="margin-top:1.5rem; font-weight:600; color:#f36819;">
       This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
@@ -240,7 +241,66 @@
     </div>
   </div>
 
+
+  <!-- Firebase + Visitor Info Logging -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8hiXUACkvZgtuadGz3afqKfDmHrJJVx8",
+      authDomain: "psa-website-ab8c7.firebaseapp.com",
+      projectId: "psa-website-ab8c7",
+      storageBucket: "psa-website-ab8c7.appspot.com",
+      messagingSenderId: "119420777548",
+      appId: "1:119420777548:web:b194a623e73bd1d4b530e9"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Populate and log visitor info
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("https://ipinfo.io/json?token=35c06590e7f3d2")
+        .then(res => res.json())
+        .then(async data => {
+          const list = document.getElementById("visitor-info");
+          const now = new Date();
+
+          const visitData = {
+            timestamp: now.toISOString(),
+            ip: data.ip,
+            location: `${data.city}, ${data.region}, ${data.country}`,
+            org: data.org,
+            userAgent: navigator.userAgent
+          };
+
+          const items = [
+            ["📍 Location", visitData.location],
+            ["🌐 IP Address", visitData.ip],
+            ["📱 ISP/Org", visitData.org],
+            ["🕒 Time Accessed", now.toLocaleString()],
+            ["💻 Device Info", visitData.userAgent]
+          ];
+
+          items.forEach(([label, value]) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${label}:</strong> ${value}`;
+            list.appendChild(li);
+          });
+
+          try {
+            await addDoc(collection(db, "visits"), visitData);
+          } catch (err) {
+            console.error("Error storing data:", err);
+          }
+        });
+    });
+  </script>
+
   <script>
+    // Modal logic
     document.body.classList.add("modal-open");
     document.getElementById("agree-button").addEventListener("click", () => {
       document.getElementById("user-agreement-modal").style.display = "none";
@@ -249,8 +309,6 @@
     document.getElementById("decline-button").addEventListener("click", () => {
       window.location.href = "https://www.google.com";
     });
-
-    // Firebase & visitor‑info logging script goes here...
   </script>
 </body>
 </html>
