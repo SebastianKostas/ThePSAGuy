@@ -42,7 +42,6 @@
       text-decoration: none;
       border-radius: 5px;
     }
-
     /* Modal + Blur Styles */
     #user-agreement-modal {
       position: fixed;
@@ -79,7 +78,6 @@
       background-color: #c62828;
       color: white;
     }
-
     /* Scroll Lock Style */
     body.modal-open {
       overflow: hidden;
@@ -92,13 +90,18 @@
     <p>Learn how to protect yourself online</p>
   </header>
 
-  <section style="background:#e3f2fd; padding:2em; border-left: 6px solid #1976d2; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 2em 0;">
-    <h2 style="color:#0d47a1;">🔍 What a QR Code Might Reveal About You</h2>
-    <p>Just by scanning and opening a link, a hacker could immediately see the following:</p>
-    <ul id="visitor-info" style="list-style-type:none; padding:0;"></ul>
-    <p style="margin-top:1em; color:#c62828; font-weight:bold;">
-      This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
-    </p>
+  <section style="background:#e3f2fd; padding:2em; border-left: 6px solid #1976d2; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 2em 0; display: flex; align-items: center; gap: 2em;">
+    <div style="flex: 1;">
+      <h2 style="color:#0d47a1;">🔍 What a QR Code Might Reveal About You</h2>
+      <p>Just by scanning and opening a link, a hacker could immediately see the following:</p>
+      <ul id="visitor-info" style="list-style-type:none; padding:0;"></ul>
+      <p style="margin-top:1em; color:#c62828; font-weight:bold;">
+        This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
+      </p>
+    </div>
+    <div style="flex-shrink: 0;">
+      <img src="Jun 7, 2025, 12_30_24 AM.png" alt="Cyber Security Logo" style="max-width: 180px; height: auto; border-radius: 8px;">
+    </div>
   </section>
 
   <div class="content">
@@ -147,16 +150,15 @@
 
   <!-- Scroll Lock JS -->
   <script>
-    // Add scroll lock when modal is visible
     document.body.classList.add("modal-open");
 
     document.getElementById("agree-button").addEventListener("click", function () {
       document.getElementById("user-agreement-modal").style.display = "none";
-      document.body.classList.remove("modal-open"); // Remove scroll lock
+      document.body.classList.remove("modal-open");
     });
 
     document.getElementById("decline-button").addEventListener("click", function () {
-      document.body.classList.remove("modal-open"); // Just in case
+      document.body.classList.remove("modal-open");
       window.location.href = "https://www.google.com";
     });
   </script>
