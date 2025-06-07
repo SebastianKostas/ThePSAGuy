@@ -18,6 +18,17 @@
       padding: 2rem;
       text-align: center;
     }
+    nav {
+      background-color: #00796b;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
     .content {
       max-width: 960px;
       margin: auto;
@@ -42,47 +53,11 @@
       text-decoration: none;
       border-radius: 5px;
     }
-
-    /* Modal + Blur Styles */
-    #user-agreement-modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+    .tab {
+      display: none;
     }
-    #user-agreement-modal .modal-box {
-      background: white;
-      padding: 2rem;
-      max-width: 500px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      text-align: center;
-    }
-    #user-agreement-modal button {
-      padding: 0.5rem 1.25rem;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #agree-button {
-      background-color: #00796b;
-      color: white;
-    }
-    #decline-button {
-      background-color: #c62828;
-      color: white;
-    }
-
-    /* Scroll Lock Style */
-    body.modal-open {
-      overflow: hidden;
+    .tab.active {
+      display: block;
     }
   </style>
 </head>
@@ -92,76 +67,67 @@
     <p>Learn how to protect yourself online</p>
   </header>
 
-  <section style="background:#e3f2fd; padding:2em; border-left: 6px solid #1976d2; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 2em 0;">
-    <h2 style="color:#0d47a1;">🔍 What a QR Code Might Reveal About You</h2>
-    <p>Just by scanning and opening a link, a hacker could immediately see the following:</p>
-    <ul id="visitor-info" style="list-style-type:none; padding:0;"></ul>
-    <p style="margin-top:1em; color:#c62828; font-weight:bold;">
-      This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
-    </p>
-  </section>
+  <nav>
+    <a href="#" onclick="showTab('tab1')">🔍 Info Collected</a>
+    <a href="#" onclick="showTab('tab2')">🚫 QR & Link Dangers</a>
+    <a href="#" onclick="showTab('tab3')">💣 Malware & Protection</a>
+  </nav>
 
   <div class="content">
-    <div class="section">
-      <h2>🚫 Dangers of Clicking Random Links</h2>
-      <p>Clicking unknown or suspicious links can lead to phishing attacks, data theft, or malware infections. Always double-check URLs and never click on links from untrusted sources.</p>
-      <a class="button" href="https://www.dropbox.com/scl/fi/oea136q4z5sr7msjkccq1/ChatGPT-Image-Jun-4-2025-10_37_00-AM.png?rlkey=bsymszysvefk3w4gynu4thkg5&st=0ydz3qak&dl=1" target="_blank">Click Here for More Information</a>
+    <div id="tab1" class="tab active">
+      <div class="section">
+        <h2>🔍 What a QR Code Might Reveal About You</h2>
+        <p>Just by scanning and opening a link, a hacker could immediately see the following:</p>
+        <ul id="visitor-info" style="list-style-type:none; padding:0;"></ul>
+        <p style="margin-top:1em; color:#c62828; font-weight:bold;">
+          This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
+        </p>
+      </div>
     </div>
-    <div class="section">
-      <h2>📷 Risks of Scanning Random QR Codes</h2>
-      <p>QR codes can hide malicious URLs that compromise your device security. Avoid scanning codes from unknown or untrusted sources without verifying them first.</p>
+
+    <div id="tab2" class="tab">
+      <div class="section">
+        <h2>🚫 Dangers of Clicking Random Links</h2>
+        <p>Clicking unknown or suspicious links can lead to phishing attacks, data theft, or malware infections. Always double-check URLs and never click on links from untrusted sources.</p>
+        <a class="button" href="https://www.dropbox.com/scl/fi/oea136q4z5sr7msjkccq1/ChatGPT-Image-Jun-4-2025-10_37_00-AM.png?rlkey=bsymszysvefk3w4gynu4thkg5&st=0ydz3qak&dl=1" target="_blank">Click Here for More Information</a>
+      </div>
+      <div class="section">
+        <h2>📷 Risks of Scanning Random QR Codes</h2>
+        <p>QR codes can hide malicious URLs that compromise your device security. Avoid scanning codes from unknown or untrusted sources without verifying them first.</p>
+      </div>
     </div>
-    <div class="section">
-      <h2>💣 Types of Malware Hackers Use</h2>
-      <ul>
-        <li><strong>RATs (Remote Access Trojans):</strong> Give hackers remote control of your device.</li>
-        <li><strong>Spyware:</strong> Steals data by secretly monitoring activity.</li>
-        <li><strong>Keyloggers:</strong> Record everything you type, including passwords.</li>
-        <li><strong>Ransomware:</strong> Locks your files until you pay a ransom.</li>
-        <li><strong>Adware:</strong> Floods your device with intrusive ads and may contain malware.</li>
-      </ul>
-    </div>
-    <div class="section">
-      <h2>🛡️ How to Protect Your Devices</h2>
-      <ul>
-        <li>Use trusted antivirus and security software.</li>
-        <li>Keep your OS and apps up to date.</li>
-        <li>Do not scan or click unknown QR codes and links.</li>
-        <li>Use multi-factor authentication where possible.</li>
-        <li>Educate yourself about phishing and social engineering tactics.</li>
-      </ul>
+
+    <div id="tab3" class="tab">
+      <div class="section">
+        <h2>💣 Types of Malware Hackers Use</h2>
+        <ul>
+          <li><strong>RATs (Remote Access Trojans):</strong> Give hackers remote control of your device.</li>
+          <li><strong>Spyware:</strong> Steals data by secretly monitoring activity.</li>
+          <li><strong>Keyloggers:</strong> Record everything you type, including passwords.</li>
+          <li><strong>Ransomware:</strong> Locks your files until you pay a ransom.</li>
+          <li><strong>Adware:</strong> Floods your device with intrusive ads and may contain malware.</li>
+        </ul>
+      </div>
+      <div class="section">
+        <h2>🛡️ How to Protect Your Devices</h2>
+        <ul>
+          <li>Use trusted antivirus and security software.</li>
+          <li>Keep your OS and apps up to date.</li>
+          <li>Do not scan or click unknown QR codes and links.</li>
+          <li>Use multi-factor authentication where possible.</li>
+          <li>Educate yourself about phishing and social engineering tactics.</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- User Agreement Modal -->
-  <div id="user-agreement-modal">
-    <div class="modal-box">
-      <h2>User Agreement</h2>
-      <p>
-        By agreeing to the user agreement you give the right for us to collect user data and store it for future analyzing.
-      </p>
-      <button id="agree-button">Agree</button>
-      <button id="decline-button">Do Not Consent</button>
-    </div>
-  </div>
-
-  <!-- Scroll Lock JS -->
   <script>
-    // Add scroll lock when modal is visible
-    document.body.classList.add("modal-open");
-
-    document.getElementById("agree-button").addEventListener("click", function () {
-      document.getElementById("user-agreement-modal").style.display = "none";
-      document.body.classList.remove("modal-open"); // Remove scroll lock
-    });
-
-    document.getElementById("decline-button").addEventListener("click", function () {
-      document.body.classList.remove("modal-open"); // Just in case
-      window.location.href = "https://www.google.com";
-    });
+    function showTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
   </script>
 
-  <!-- Firebase SDK and Visitor Logging -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
