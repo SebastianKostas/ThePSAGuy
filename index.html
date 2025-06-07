@@ -175,6 +175,7 @@
     <p>Your guide to staying secure in a digital world</p>
   </header>
 
+  <!-- QR Section -->
   <section class="section content">
     <div class="qr-header">
       <div class="info">
@@ -183,7 +184,6 @@
       </div>
       <img src="logo.png" alt="Cyber Security Logo">
     </div>
-
     <ul id="visitor-info"></ul>
     <p style="margin-top:1.5rem; font-weight:600; color:#f36819;">
       This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
@@ -191,17 +191,20 @@
   </section>
 
   <div class="content">
+    <!-- 1: Dangers -->
     <div class="section">
       <h2>🚫 Dangers of Clicking Random Links</h2>
       <p>Clicking unknown or suspicious links can lead to phishing attacks, data theft, or malware infections. Always double‑check URLs and never click on links from untrusted sources.</p>
       <a class="button" href="#" target="_blank">Learn More</a>
     </div>
 
+    <!-- 2: Risks of QR -->
     <div class="section">
       <h2>📷 Risks of Scanning Random QR Codes</h2>
       <p>QR codes can hide malicious URLs that compromise your device security. Avoid scanning codes from unknown or untrusted sources without verifying them first.</p>
     </div>
 
+    <!-- 3: Types of Malware -->
     <div class="section">
       <h2>💣 Types of Malware Hackers Use</h2>
       <ul>
@@ -213,6 +216,7 @@
       </ul>
     </div>
 
+    <!-- 4: Protection -->
     <div class="section">
       <h2>🛡️ How to Protect Your Devices</h2>
       <ul>
@@ -243,11 +247,10 @@
       document.body.classList.remove("modal-open");
     });
     document.getElementById("decline-button").addEventListener("click", () => {
-      document.body.classList.remove("modal-open");
       window.location.href = "https://www.google.com";
     });
 
-    // Visitor info logging script goes here...
+    // Firebase & visitor‑info logging script goes here...
   </script>
 </body>
 </html>
