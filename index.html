@@ -42,7 +42,22 @@
       text-decoration: none;
       border-radius: 5px;
     }
-    /* Modal + Blur Styles */
+
+    .qr-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .qr-header h2 {
+      color: #0d47a1;
+      margin: 0;
+    }
+    .qr-header img {
+      max-width: 150px;
+      height: auto;
+      border-radius: 8px;
+    }
+
     #user-agreement-modal {
       position: fixed;
       top: 0; left: 0;
@@ -78,7 +93,7 @@
       background-color: #c62828;
       color: white;
     }
-    /* Scroll Lock Style */
+
     body.modal-open {
       overflow: hidden;
     }
@@ -90,18 +105,16 @@
     <p>Learn how to protect yourself online</p>
   </header>
 
-  <section style="background:#e3f2fd; padding:2em; border-left: 6px solid #1976d2; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 2em 0; display: flex; align-items: center; gap: 2em;">
-    <div style="flex: 1;">
-      <h2 style="color:#0d47a1;">🔍 What a QR Code Might Reveal About You</h2>
-      <p>Just by scanning and opening a link, a hacker could immediately see the following:</p>
-      <ul id="visitor-info" style="list-style-type:none; padding:0;"></ul>
-      <p style="margin-top:1em; color:#c62828; font-weight:bold;">
-        This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
-      </p>
+  <section style="background:#e3f2fd; padding:2em; border-left: 6px solid #1976d2; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 2em 0;">
+    <div class="qr-header">
+      <h2>🔍 What a QR Code Might Reveal About You</h2>
+      <img src="logo.png" alt="Cyber Security Logo">
     </div>
-    <div style="flex-shrink: 0;">
-      <img src="Jun 7, 2025, 12_30_24 AM.png" alt="Cyber Security Logo" style="max-width: 180px; height: auto; border-radius: 8px;">
-    </div>
+    <p>Just by scanning and opening a link, a hacker could immediately see the following:</p>
+    <ul id="visitor-info" style="list-style-type:none; padding:0;"></ul>
+    <p style="margin-top:1em; color:#c62828; font-weight:bold;">
+      This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
+    </p>
   </section>
 
   <div class="content">
@@ -148,7 +161,6 @@
     </div>
   </div>
 
-  <!-- Scroll Lock JS -->
   <script>
     document.body.classList.add("modal-open");
 
@@ -163,7 +175,6 @@
     });
   </script>
 
-  <!-- Firebase SDK and Visitor Logging -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
