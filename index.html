@@ -79,6 +79,11 @@
       background-color: #c62828;
       color: white;
     }
+
+    /* Scroll Lock Style */
+    body.modal-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -140,12 +145,18 @@
     </div>
   </div>
 
+  <!-- Scroll Lock JS -->
   <script>
+    // Add scroll lock when modal is visible
+    document.body.classList.add("modal-open");
+
     document.getElementById("agree-button").addEventListener("click", function () {
       document.getElementById("user-agreement-modal").style.display = "none";
+      document.body.classList.remove("modal-open"); // Remove scroll lock
     });
 
     document.getElementById("decline-button").addEventListener("click", function () {
+      document.body.classList.remove("modal-open"); // Just in case
       window.location.href = "https://www.google.com";
     });
   </script>
