@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cyber Safety PSA</title>
   <style>
-    /* ——————————— Base & Typography ——————————— */
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
     body {
       font-family: 'Montserrat', sans-serif;
@@ -24,11 +23,10 @@
       color: #cfd2dc;
     }
 
-    /* ——————————— Header ——————————— */
     header {
       background: #161a28;
       color: #f5c06b;
-      padding: 3rem 1rem;
+      padding: 1rem 1rem;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
@@ -37,17 +35,16 @@
       color: #a1a6b3;
     }
 
-    /* ——————————— Layout Containers ——————————— */
     .content {
       max-width: 1000px;
       margin: auto;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem;
     }
     .section {
       background: #242b3a;
       border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
       box-shadow: 0 6px 18px rgba(0,0,0,0.4);
       transition: transform 0.3s ease;
     }
@@ -71,11 +68,10 @@
       top: 0;
     }
 
-    /* ——————————— Buttons ——————————— */
     a.button {
       display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
       background-color: #f5c06b;
       color: #161a28;
       text-decoration: none;
@@ -87,12 +83,11 @@
       background-color: #ddb852;
     }
 
-    /* ——————————— QR Header ——————————— */
     .qr-header {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       align-items: flex-start;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     .qr-header .info {
       flex: 0 1 60%;
@@ -109,7 +104,6 @@
       font-size: 1.75rem;
     }
 
-    /* ——————————— Modal Styles ——————————— */
     #user-agreement-modal {
       position: fixed;
       top: 0; left: 0;
@@ -160,7 +154,6 @@
       overflow: hidden;
     }
 
-    /* ——————————— Fine Print ——————————— */
     small {
       display: block;
       margin-top: 1rem;
@@ -175,7 +168,6 @@
     <p>Your guide to staying secure in a digital world</p>
   </header>
 
-  <!-- QR Section -->
   <section class="section content">
     <div class="qr-header">
       <div class="info">
@@ -184,28 +176,22 @@
       </div>
       <img src="logo.png" alt="Cyber Security Logo">
     </div>
-
     <ul id="visitor-info"></ul>
-    <p style="margin-top:1.5rem; font-weight:600; color:#f36819;">
+    <p style="margin-top:1rem; font-weight:600; color:#f36819;">
       This data was gathered the moment you opened this page — imagine what a malicious link could do with it.
     </p>
   </section>
 
   <div class="content">
-    <!-- 1: Dangers -->
     <div class="section">
       <h2>🚫 Dangers of Clicking Random Links</h2>
       <p>Clicking unknown or suspicious links can lead to phishing attacks, data theft, or malware infections. Always double‑check URLs and never click on links from untrusted sources.</p>
       <a class="button" href="#" target="_blank">Learn More</a>
     </div>
-
-    <!-- 2: Risks of QR -->
     <div class="section">
       <h2>📷 Risks of Scanning Random QR Codes</h2>
       <p>QR codes can hide malicious URLs that compromise your device security. Avoid scanning codes from unknown or untrusted sources without verifying them first.</p>
     </div>
-
-    <!-- 3: Types of Malware -->
     <div class="section">
       <h2>💣 Types of Malware Hackers Use</h2>
       <ul>
@@ -216,8 +202,6 @@
         <li><strong>Adware:</strong> Floods your device with intrusive ads and may contain malware.</li>
       </ul>
     </div>
-
-    <!-- 4: Protection -->
     <div class="section">
       <h2>🛡️ How to Protect Your Devices</h2>
       <ul>
@@ -230,7 +214,6 @@
     </div>
   </div>
 
-  <!-- User Agreement Modal -->
   <div id="user-agreement-modal">
     <div class="modal-box">
       <h2>User Agreement</h2>
@@ -241,8 +224,6 @@
     </div>
   </div>
 
-
-  <!-- Firebase + Visitor Info Logging -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js";
@@ -256,11 +237,9 @@
       appId: "1:119420777548:web:b194a623e73bd1d4b530e9"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Populate and log visitor info
     window.addEventListener("DOMContentLoaded", () => {
       fetch("https://ipinfo.io/json?token=35c06590e7f3d2")
         .then(res => res.json())
@@ -300,7 +279,6 @@
   </script>
 
   <script>
-    // Modal logic
     document.body.classList.add("modal-open");
     document.getElementById("agree-button").addEventListener("click", () => {
       document.getElementById("user-agreement-modal").style.display = "none";
