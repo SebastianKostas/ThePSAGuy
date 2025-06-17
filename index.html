@@ -153,6 +153,30 @@
       font-size: 0.85rem;
       color: #6e7284;
     }
+    .code-toggle {
+      background-color: #161a28;
+      padding: 0.6rem 1.2rem;
+      color: #f5c06b;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .code-toggle:hover {
+      background-color: #2c3347;
+    }
+    pre {
+      background-color: #10141f;
+      color: #d1d1d1;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -204,6 +228,28 @@
         <li>Use multi‑factor authentication where possible.</li>
         <li>Educate yourself about phishing and social engineering tactics.</li>
       </ul>
+    </div>
+
+    <div class="section">
+      <h2>💻 Example: How a Hacker Could Use a USB Device</h2>
+      <p>For educational purposes only. This shows how a Raspberry Pi Pico acting as a USB keyboard could type malicious commands.</p>
+      <button class="code-toggle" onclick="toggleCode()">View Hypothetical Code</button>
+      <pre id="code-block">
+import time
+import usb_hid
+from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keycode import Keycode
+
+kbd = Keyboard(usb_hid.devices)
+
+time.sleep(3)
+kbd.send(Keycode.GUI, Keycode.R)
+time.sleep(0.5)
+kbd.write("notepad\n")
+time.sleep(1)
+kbd.write("You've been hacked... hypothetically!\n" * 3)
+kbd.write("Don't plug in unknown devices.\n")
+      </pre>
     </div>
   </div>
 
@@ -280,6 +326,11 @@
     document.getElementById("decline-button").addEventListener("click", () => {
       window.location.href = "https://www.google.com";
     });
+
+    function toggleCode() {
+      const block = document.getElementById("code-block");
+      block.style.display = block.style.display === "block" ? "none" : "block";
+    }
   </script>
 </body>
 </html>
